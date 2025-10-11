@@ -29,7 +29,7 @@ Sistema que envía 2 XLM a 3 cuentas diferentes con memos únicos ("Tiburoncín 
 ![Ejercicio 2 - Resultados](ejercicio2.png)
 
 **🔗 Transacciones en Blockchain:**
-- [Pago 1 - Tiburoncín Uh Ha Ha 1](https://stellar.expert/explorer/testnet/tx/d2a7d11b392c1c3170426dabc9117fe81bd43b31431fc3d85ee7d565f04117ddb)
+-  [Pago 1 - Tiburoncín Uh Ha Ha 1](https://stellar.expert/explorer/testnet/tx/24b43004fb25ef74f9507cbc93231fac5e8756f179b486dd01ee66f2e6bb2784)
 - [Pago 2 - Tiburoncín Uh Ha Ha 2](https://stellar.expert/explorer/testnet/tx/13f05c9bfda2505f20512e8e0d93006bafb879a7aa434363d0fd37d382ad5593)
 - [Pago 3 - Tiburoncín Uh Ha Ha 3](https://stellar.expert/explorer/testnet/tx/ca5bbc69a1c20f2fceddfd3264fa233b940d2cb5b3433cdfeae1c7c8c4ff620e)
 
