@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Sistema
+.DS_Store
+
+# Archivos sensibles
+.env
+*.secret
+
+# Lock files
+package-lock.json
