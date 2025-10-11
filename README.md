@@ -86,37 +86,18 @@ Stellar Testnet
 🔒 Seguridad
 ⚠️ Buenas prácticas implementadas:
 
-Secret keys protegidas con placeholders
+Secret keys protegidas 
 Archivos sensibles en .gitignore
 Solo uso de Testnet (sin fondos reales)
-
-
-🎓 Aprendizajes Clave
-
-Automatización de creación de cuentas con bucles
-Construcción de transacciones con TransactionBuilder
-Manejo de operaciones de pago en Stellar
-Consulta de información de cuentas con Horizon API
-Uso de memos para identificar transacciones
-Buenas prácticas de seguridad en blockchain
-
-
-📚 Recursos
-
-Stellar Documentation
-Stellar SDK para JavaScript
-StellarExpert Testnet Explorer
-Stellar Laboratory
 
 
 📄 Estructura del Proyecto
 Clase2-Stellar/
 ├── README.md
 ├── .gitignore
-├── capturas/
-│   ├── ejercicio1.png
-│   ├── ejercicio2.png
-│   └── ejercicio3.png
+├── ejercicio1.png
+│   ejercicio2.png
+│   ejercicio3.png
 └── javascript-sdk/
     ├── crear-cuenta.js
     ├── enviar-pago.js
