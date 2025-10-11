@@ -1,0 +1,10 @@
+# Sistema macOS
+.DS_Store
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Archivos sensibles
+.env
+*.secret
