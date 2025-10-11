@@ -11,7 +11,7 @@ Genera 5 cuentas Stellar automáticamente usando un bucle `for`, fondea cada una
 - ✅ Muestra public key, secret key y balance inicial
 - ✅ Almacena información en un array
 
-![Ejercicio 1 - Resultados](capturas/ejercicio1.png)
+![Ejercicio 1 - Resultados](ejercicio1.png)
 
 ---
 
@@ -26,7 +26,7 @@ Sistema que envía 2 XLM a 3 cuentas diferentes con memos únicos ("Tiburoncín 
 - ✅ Verifica éxito antes de continuar
 - ✅ Muestra hash de cada transacción
 
-![Ejercicio 2 - Resultados](capturas/ejercicio2.png)
+![Ejercicio 2 - Resultados](ejercicio2.png)
 
 **🔗 Transacciones en Blockchain:**
 - [Pago 1 - Tiburoncín Uh Ha Ha 1](https://stellar.expert/explorer/testnet/tx/d2a7d11b392c1c3170426dabc9117fe81bd43b31431fc3d85ee7d565f04117ddb)
@@ -47,7 +47,7 @@ Monitor que consulta múltiples cuentas mostrando balance de XLM, número de tru
 - ✅ Muestra sequence number
 - ✅ Formato de salida legible
 
-![Ejercicio 3 - Resultados](capturas/ejercicio3.png)
+![Ejercicio 3 - Resultados](ejercicio3.png)
 
 ---
 
