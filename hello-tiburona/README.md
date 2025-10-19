@@ -5,13 +5,21 @@ Contrato inteligente profesional en Soroban (Stellar) implementando un sistema d
 ## ✨ Características Implementadas
 
 ✅ Manejo de errores con `contracterror` (4 tipos)
+
 ✅ Storage organizado con DataKey (Instance + Persistent)
+
 ✅ Control de acceso basado en admin
+
 ✅ Validaciones de input (nombre vacío y longitud)
+
 ✅ Sistema de contador global
+
 ✅ Tracking de último saludo por usuario
+
 ✅ TTL management correcto
+
 ✅ 6 tests comprehensivos (100% passing)
+
 
 ## 🏗️ Arquitectura
 
@@ -56,7 +64,8 @@ cargo test
 - ✅ `test_reset_solo_admin` - Admin puede resetear
 - ✅ `test_reset_no_autorizado` - No-admin no puede resetear
 
-## 🏗️ Build
+![Test - Resultados](Teststarea3.png)
+## 🏗️ Build 
 ```bash
 soroban contract build
 ```
@@ -65,6 +74,8 @@ soroban contract build
 - WASM generado: `hello_tiburona.wasm`
 - 6 funciones exportadas
 - Hash: `e8b34e73590f135c15be4e0019169ed5f528c7837061dabcb692f6821504a854`
+
+![Build](Build.png)
 
 ## 📚 Conceptos Aplicados
 
