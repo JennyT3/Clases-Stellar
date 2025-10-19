@@ -1,110 +1,120 @@
-## 🎯 Ejercicios Completados
+# 🦈 Clases Stellar - Código Futura
 
-### 📁 Ejercicio 1: Creación Masiva de Cuentas
-**Archivo:** `javascript-sdk/crear-cuenta.js`
-
-Genera 5 cuentas Stellar automáticamente usando un bucle `for`, fondea cada una con Friendbot y almacena toda la información en un array.
-
-**Requisitos cumplidos:**
-- ✅ Bucle for para generar 5 keypairs
-- ✅ Fondeo automático con Friendbot
-- ✅ Muestra public key, secret key y balance inicial
-- ✅ Almacena información en un array
-
-![Ejercicio 1 - Resultados](ejercicio1.png)
+**Estudiante:** Jenny Tejedor  
+**Programa:** Bootcamp Stellar de Buen día Builders
+**Período:** Octubre 2025
 
 ---
 
-### 💸 Ejercicio 2: Sistema de Pagos Automatizado
-**Archivo:** `javascript-sdk/enviar-pago.js`
+## 📚 Contenido del Repositorio
 
-Sistema que envía 2 XLM a 3 cuentas diferentes con memos únicos ("Tiburoncín Uh Ha Ha 1, 2, 3"), verificando el éxito de cada transacción.
+Repositorio con las tareas del Bootcamp Stellar, enfocado en desarrollo de contratos inteligentes con Soroban.
 
-**Requisitos cumplidos:**
-- ✅ Envía 2 XLM a 3 destinatarios diferentes
-- ✅ Memos únicos para cada transacción
-- ✅ Verifica éxito antes de continuar
-- ✅ Muestra hash de cada transacción
-
-![Ejercicio 2 - Resultados](ejercicio2.png)
-
-**🔗 Transacciones en Blockchain:**
--  [Pago 1 - Tiburoncín Uh Ha Ha 1](https://stellar.expert/explorer/testnet/tx/24b43004fb25ef74f9507cbc93231fac5e8756f179b486dd01ee66f2e6bb2784)
-- [Pago 2 - Tiburoncín Uh Ha Ha 2](https://stellar.expert/explorer/testnet/tx/13f05c9bfda2505f20512e8e0d93006bafb879a7aa434363d0fd37d382ad5593)
-- [Pago 3 - Tiburoncín Uh Ha Ha 3](https://stellar.expert/explorer/testnet/tx/ca5bbc69a1c20f2fceddfd3264fa233b940d2cb5b3433cdfeae1c7c8c4ff620e)
+### 🗂️ Estructura
+```
+Clases-Stellar/
+├── javascript-sdk/           # Tarea 1: Stellar SDK (JS)
+└── hello-tiburona/           # Tarea 2: Contrato Soroban profesional
+```
 
 ---
 
-### 📊 Ejercicio 3: Monitor de Balances
-**Archivo:** `javascript-sdk/consultar-balance.js`
+## 📋 Tareas Completadas
 
-Monitor que consulta múltiples cuentas mostrando balance de XLM, número de trustlines activos y sequence number con formato legible.
+### ✅ Tarea 1: JavaScript SDK
+**Carpeta:** `javascript-sdk/`
 
-**Requisitos cumplidos:**
-- ✅ Acepta array de public keys
-- ✅ Muestra balance de XLM
-- ✅ Muestra número de trustlines
-- ✅ Muestra sequence number
-- ✅ Formato de salida legible
+Ejercicios fundamentales con Stellar usando JavaScript SDK.
+- Creación de cuentas
+- Envío de pagos
+- Consulta de balances
 
-![Ejercicio 3 - Resultados](ejercicio3.png)
+[Ver detalles →](./javascript-sdk/README.md)
 
 ---
 
-## 🚀 Instalación y Uso
 
-### Prerrequisitos
-- Node.js v18.0 o superior
-- npm v9.0 o superior
+### ✅ Tarea Clase 4: Implementa Hello Tiburona Profesional
+**Carpeta:** `hello-tiburona/`
 
-### Instalación
+Contrato inteligente en Soroban con arquitectura profesional.
+
+**Características:**
+- 🔐 Control de acceso (admin)
+- ✅ Validaciones de input
+- 📊 Contador de saludos
+- 💾 Storage organizado (Instance + Persistent)
+- ⏰ TTL management
+- 🎯 4 tipos de errores personalizados
+
+**Testing:**
 ```bash
-# Clonar el repositorio
-git clone https://github.com/JennyT3/Clase2-Stellar.git
-cd Clase2-Stellar/javascript-sdk
+cargo test
+# Result: 6 passed; 0 failed ✅
+```
 
-# Instalar dependencias
-npm install
-Ejecución
-bash# Ejercicio 1: Crear 5 cuentas automáticamente
-node crear-cuenta.js
+**Build:**
+```bash
+cargo build --target wasm32-unknown-unknown --release
+# WASM: 6.1KB
+```
 
-# Ejercicio 2: Enviar pagos
-# ⚠️ Configurar SECRET_KEY antes de ejecutar
-node enviar-pago.js
+**Funciones principales:**
+- `initialize()` - Setup inicial con admin
+- `hello()` - Registrar saludo con validaciones
+- `get_contador()` - Consultar total de saludos
+- `get_ultimo_saludo()` - Ver último saludo de usuario
+- `reset_contador()` - Resetear (solo admin)
 
-# Ejercicio 3: Consultar balances
-node consultar-balance.js
+[Ver código completo →](./hello-tiburona/contracts/hello-tiburona/src/lib.rs)
 
-📦 Tecnologías Utilizadas
+---
 
-Node.js v20.19.0
-Stellar SDK v14.2.0
-Stellar Testnet
+## 🛠️ Stack Tecnológico
 
+- **Rust** (v1.75+) - Lenguaje para Soroban
+- **Soroban SDK** (v21.7.7) - Framework de contratos
+- **Stellar CLI** (v23.1.4) - Tooling y deployment
+- **JavaScript/Node.js** - Ejercicios SDK
 
-🔒 Seguridad
-⚠️ Buenas prácticas implementadas:
+---
 
-Secret keys protegidas 
-Archivos sensibles en .gitignore
-Solo uso de Testnet (sin fondos reales)
+## 🚀 Quick Start
 
+### Prerequisitos
+```bash
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-📄 Estructura del Proyecto
-Clase2-Stellar/
-├── README.md
-├── .gitignore
-├── ejercicio1.png
-│   ejercicio2.png
-│   ejercicio3.png
-└── javascript-sdk/
-    ├── crear-cuenta.js
-    ├── enviar-pago.js
-    ├── consultar-balance.js
-    ├── package.json
-    ├── .gitignore
-    └── README.md
+# Soroban CLI
+cargo install --locked soroban-cli
 
-🦈 Hecho con dedicación por una Tiburona Builder
-Curso Código Futura 2025 - Buen Día Builders
+# Target WASM
+rustup target add wasm32-unknown-unknown
+```
+
+### Ejecutar Hello Tiburona
+```bash
+cd hello-tiburona
+cargo test                    # Tests
+cargo build --target wasm32-unknown-unknown --release  # Build
+```
+
+---
+
+## 📚 Recursos
+
+- [Stellar Docs](https://developers.stellar.org/)
+- [Soroban Docs](https://soroban.stellar.org/)
+- [Codigo Futura Repo](https://github.com/BuenDia-Builders/codigofutura)
+
+---
+
+## 📬 Contacto
+
+**Jenny Tejedor**  
+GitHub: [@JennyT3](https://github.com/JennyT3)
+
+---
+
+🦈 **Bootcamp Tiburones Stellar** 🦈
