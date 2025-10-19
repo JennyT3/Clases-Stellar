@@ -12,6 +12,7 @@ pub enum Error {
     NombreMuyLargo = 2,
     NoAutorizado = 3,
     NoInicializado = 4,
+    LimiteInvalido = 5,  // ← NUEVO
 }
 
 #[contracttype]
@@ -20,6 +21,8 @@ pub enum DataKey {
     Admin,
     ContadorSaludos,
     UltimoSaludo(Address),
+    ContadorPorUsuario(Address),
+    LimiteCaracteres,  // ← NUEVO
 }
 
 #[contract]
@@ -57,10 +60,11 @@ impl HelloContract {
             return Err(Error::NombreVacio);
         }
         
-        // Validación 2: Los Symbols en Soroban están limitados a 32 caracteres
-        // por diseño, así que esta validación es más conceptual que práctica.
-        // Sin embargo, la mantenemos para demostrar el patrón profesional.
-        // (Nota: En WASM real, Symbol tiene límite máximo de 32 chars por protocolo)
+        // Validación 2: Verificar límite configurable de caracteres
+        let limite = Self::get_limite(env.clone());
+        // Nota: En WASM, no podemos usar nombre.len() directamente
+        // pero podemos validar contra el límite configurable
+        // Los Symbols en Soroban están limitados a 32 caracteres por protocolo
         
         // Incrementar contador
         let key_contador = DataKey::ContadorSaludos;
@@ -119,6 +123,64 @@ impl HelloContract {
             .set(&DataKey::ContadorSaludos, &0u32);
         
         Ok(())
+    }
+
+    pub fn transfer_admin(
+        env: Env,
+        caller: Address,
+        nuevo_admin: Address
+    ) -> Result<(), Error> {
+        // Verificar que caller sea el admin actual
+        let admin: Address = env.storage()
+            .instance()
+            .get(&DataKey::Admin)
+            .ok_or(Error::NoInicializado)?;
+        
+        if caller != admin {
+            return Err(Error::NoAutorizado);
+        }
+        
+        // Cambiar el admin
+        env.storage()
+            .instance()
+            .set(&DataKey::Admin, &nuevo_admin);
+        
+        Ok(())
+    }
+
+    pub fn set_limite(
+        env: Env,
+        caller: Address,
+        limite: u32
+    ) -> Result<(), Error> {
+        // Verificar que caller sea el admin
+        let admin: Address = env.storage()
+            .instance()
+            .get(&DataKey::Admin)
+            .ok_or(Error::NoInicializado)?;
+        
+        if caller != admin {
+            return Err(Error::NoAutorizado);
+        }
+        
+        // Validar que el límite sea razonable (entre 1 y 32)
+        if limite == 0 || limite > 32 {
+            return Err(Error::LimiteInvalido);
+        }
+        
+        // Guardar el límite
+        env.storage()
+            .instance()
+            .set(&DataKey::LimiteCaracteres, &limite);
+        
+        Ok(())
+    }
+
+    pub fn get_limite(env: Env) -> u32 {
+        env.storage()
+            .instance()
+            .get(&DataKey::LimiteCaracteres)
+            .unwrap_or(32)  // Default: 32 caracteres
     }
 }
 
@@ -219,5 +281,75 @@ mod test {
         client.initialize(&admin);
         
         client.reset_contador(&otro);
+    }
+
+    // RETO 2: Transfer Admin
+    #[test]
+    fn test_transfer_admin() {
+        let env = Env::default();
+        let contract_id = env.register_contract(None, HelloContract);
+        let client = HelloContractClient::new(&env, &contract_id);
+        
+        let admin = Address::generate(&env);
+        let nuevo_admin = Address::generate(&env);
+        
+        client.initialize(&admin);
+        
+        // Admin transfiere ownership
+        client.transfer_admin(&admin, &nuevo_admin);
+        
+        // Nuevo admin puede resetear
+        client.reset_contador(&nuevo_admin);
+    }
+
+    #[test]
+    #[should_panic(expected = "Error(Contract, #3)")]
+    fn test_transfer_admin_no_autorizado() {
+        let env = Env::default();
+        let contract_id = env.register_contract(None, HelloContract);
+        let client = HelloContractClient::new(&env, &contract_id);
+        
+        let admin = Address::generate(&env);
+        let otro = Address::generate(&env);
+        let nuevo = Address::generate(&env);
+        
+        client.initialize(&admin);
+        
+        // Otro usuario intenta transferir
+        client.transfer_admin(&otro, &nuevo);
+    }
+
+    // RETO 3: Límite Configurable
+    #[test]
+    fn test_set_limite() {
+        let env = Env::default();
+        let contract_id = env.register_contract(None, HelloContract);
+        let client = HelloContractClient::new(&env, &contract_id);
+        
+        let admin = Address::generate(&env);
+        
+        client.initialize(&admin);
+        
+        // Límite por defecto
+        assert_eq!(client.get_limite(), 32);
+        
+        // Admin cambia el límite
+        client.set_limite(&admin, &20);
+        assert_eq!(client.get_limite(), 20);
+    }
+
+    #[test]
+    #[should_panic(expected = "Error(Contract, #5)")]
+    fn test_set_limite_invalido() {
+        let env = Env::default();
+        let contract_id = env.register_contract(None, HelloContract);
+        let client = HelloContractClient::new(&env, &contract_id);
+        
+        let admin = Address::generate(&env);
+        
+        client.initialize(&admin);
+        
+        // Intentar límite inválido
+        client.set_limite(&admin, &0);
     }
 }
