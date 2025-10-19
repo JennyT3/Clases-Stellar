@@ -65,6 +65,15 @@ cargo test
 - ✅ `test_reset_no_autorizado` - No-admin no puede resetear
 
 ![Test - Resultados](Teststarea3.png)
+
+- ✅ test_contador_usuario - [RETO 1] Contador por usuario funciona
+- ✅ test_transfer_admin - [RETO 2] Transfer admin exitoso
+- ✅ test_transfer_admin_no_autorizado - [RETO 2] Solo admin puede transferir
+- ✅ test_set_limite - [RETO 3] Límite configurable funciona
+- ✅ test_set_limite_invalido - [RETO 3] Validación de límite inválido
+  
+![Test - Resultados](Testopcional.png)
+
 ## 🏗️ Build 
 ```bash
 soroban contract build
