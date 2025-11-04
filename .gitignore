@@ -8,3 +8,5 @@ package-lock.json
 # Archivos sensibles
 .env
 *.secret
+frontend-token-bdb-OLD/
+token-bdb-frontend-OLD/

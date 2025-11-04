@@ -19,10 +19,10 @@ function App() {
       setPublicKey(key)
       setConnected(true)
       
-      console.log('✅ Wallet conectada:', key)
+      console.log('Wallet conectada:', key)
       
     } catch (error: any) {
-      console.error('❌ Error:', error)
+      console.error('Error:', error)
       alert('Error: ' + error.message)
     }
   }
